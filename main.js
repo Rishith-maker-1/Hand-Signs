@@ -1,3 +1,10 @@
+prediction="";
+function speak(){
+    var synth = window.speechSynthesis;
+    speech = "Detected " +prediction;
+    utterThis= new SpeechSynthesisUtterance(speech);
+    synth.speak(utterThis);
+}
 Webcam.set({
     width: 300,
     height: 300,
@@ -13,7 +20,7 @@ function take_snapshot() {
     });
 }
 console.log('ml5 version', ml5.version);
-classifier = ml5.imageClassifier('', modelLoaded);
+classifier = ml5.imageClassifier('https://teachablemachine.withgoogle.com/models/xQRttb4CE/model.json', modelLoaded);
 
 function modelLoaded() {
     console.log(modelLoaded);
