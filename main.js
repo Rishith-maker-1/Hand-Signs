@@ -1,15 +1,16 @@
-prediction="";
-function speak(){
+prediction = "";
+
+function speak() {
     var synth = window.speechSynthesis;
-    speech = "Detected " +prediction;
-    utterThis= new SpeechSynthesisUtterance(speech);
+    speech = "Detected " + prediction;
+    utterThis = new SpeechSynthesisUtterance(speech);
     synth.speak(utterThis);
 }
 Webcam.set({
     width: 300,
     height: 300,
     image_format: 'jpg',
-    jpg_quality: 9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
+    jpg_quality: 99
 });
 camera = document.getElementById("camera");
 Webcam.attach('#camera');
@@ -36,5 +37,26 @@ function gotresult(error, results) {
         console.error(error);
     } else {
         console.log(results);
+    }
+}
+
+function gotResult(error, results) {
+    if (error) {
+        console.error(error);
+    } else {
+        console.log(results);
+        document.getElementById("resultEmotionName").innerHTML = results[0].label;
+        prediction1 = results[0].label;
+        prediction2 = results[1].label;
+        speak();
+        if (results[0].label == "amazing") {
+            document.getElementById("updateEmoji").innerHTML = "&#128076;";
+        }
+        if (results[0].label == "best") {
+            document.getElementById("updateEmoji").innerHTML = "&#128077;";
+        }
+        if (results[0].label == "victory") {
+            document.getElementById("updateEmoji").innerHTML = "&#9996;";
+        }
     }
 }
