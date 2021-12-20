@@ -32,22 +32,13 @@ function check() {
     classifier.classify(img, gotresult);
 }
 
-function gotresult(error, results) {
-    if (error) {
-        console.error(error);
-    } else {
-        console.log(results);
-    }
-}
-
 function gotResult(error, results) {
     if (error) {
         console.error(error);
     } else {
         console.log(results);
         document.getElementById("resultEmotionName").innerHTML = results[0].label;
-        prediction1 = results[0].label;
-        prediction2 = results[1].label;
+        prediction = results[0].label
         speak();
         if (results[0].label == "amazing") {
             document.getElementById("updateEmoji").innerHTML = "&#128076;";
